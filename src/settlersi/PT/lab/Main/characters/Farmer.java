@@ -12,7 +12,11 @@ public class Farmer extends Thread {
             try {
                 Thread.sleep(Settlers.rand.nextInt(harvestingTime) + harvestingTime);
             } catch (InterruptedException ignored) {
+                break;
             }
+
+
+
             synchronized (this.miner) {
                 this.miner.notify();
             }

@@ -18,6 +18,7 @@ public class Armourer extends Thread {
                 try {
                     this.wait();
                 } catch (InterruptedException ignored) {
+                    break;
                 }
             }
 

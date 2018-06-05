@@ -19,13 +19,23 @@
             <Image url="/rightKingdom.jpg" />
          </image>
       </ImageView>
-      <TextArea fx:id="blueKingdomStats" editable="false" layoutX="22.0" layoutY="153.0" prefHeight="94.0" prefWidth="200.0" />
+      <TextArea fx:id="blueKingdomStats" editable="false"  layoutX="22.0" layoutY="153.0" prefHeight="94.0" prefWidth="200.0" />
       <TextArea fx:id="redKingdomStats" editable="false" layoutX="378.0" layoutY="153.0" prefHeight="94.0" prefWidth="200.0" />
       <TextArea fx:id="blueKingdomEvents" editable="false" layoutX="22.0" layoutY="258.0" prefHeight="200.0" prefWidth="200.0" />
       <TextArea fx:id="redKingdomEvents" editable="false" layoutX="378.0" layoutY="258.0" prefHeight="200.0" prefWidth="200.0" />
       <ImageView fitHeight="127.0" fitWidth="139.0" layoutX="237.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="/vs.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="redKingdomWins" fitHeight="427.0" fitWidth="500.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="/rightKingdomWins.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="blueKingdomWins" fitHeight="427.0" fitWidth="500.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="/leftKingdomWins.jpg" />
          </image>
       </ImageView>
       <Button fx:id = "fightButton" onMouseClicked="#fightButtonClick" layoutX="237.0" layoutY="290.0" text="FIGHT!" prefWidth="128.0"/>

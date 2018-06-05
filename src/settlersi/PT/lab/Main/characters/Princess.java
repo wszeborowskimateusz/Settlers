@@ -20,6 +20,7 @@ public class Princess extends Thread {
                 try {
                     this.wait();
                 } catch (InterruptedException ignored) {
+                    break;
                 }
             }
             controller.addEvent("Princess has just received a fine piece of jewelery!\n", this.kingdomType);

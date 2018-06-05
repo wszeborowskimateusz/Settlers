@@ -16,6 +16,7 @@ public class Jeweller extends Thread {
                 try {
                     this.wait();
                 } catch (InterruptedException ignored) {
+                    break;
                 }
             }
             controller.addEvent("Jeweller has just received gold\n" +
@@ -23,7 +24,10 @@ public class Jeweller extends Thread {
             try {
                 Thread.sleep(Settlers.rand.nextInt(producingTime) + producingTime);
             } catch (InterruptedException ignored) {
+                break;
             }
+
+
 
             synchronized (this.princess) {
                 this.princess.notify();

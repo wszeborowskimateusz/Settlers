@@ -1,5 +1,6 @@
 package settlersi.PT.lab.Main.characters;
 
+import settlersi.PT.lab.Main.Controller;
 import settlersi.PT.lab.Main.Settlers;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ public class WarriorsAngel extends Thread {
 
     private ArrayList<Warrior> warriors;
     private int channelingPowerTime;
+    private KingdomType kingdomType;
 
     @Override
     public void run() {
@@ -18,8 +20,11 @@ public class WarriorsAngel extends Thread {
             }
 
 
-            if (warriors.size() <= 0)
+            if (warriors.size() <= 0) {
+                Controller controller = Settlers.loader.getController();
+                controller.endSimulation(kingdomType);
                 break;
+            }
 
             Warrior warrior = warriors.get(Settlers.rand.nextInt(warriors.size()));
 
@@ -30,8 +35,9 @@ public class WarriorsAngel extends Thread {
         }
     }
 
-    public WarriorsAngel(ArrayList<Warrior> warriors, int channelingPowerTime) {
+    public WarriorsAngel(ArrayList<Warrior> warriors, int channelingPowerTime, KingdomType kingdomType) {
         this.channelingPowerTime = channelingPowerTime;
         this.warriors = warriors;
+        this.kingdomType = kingdomType;
     }
 }

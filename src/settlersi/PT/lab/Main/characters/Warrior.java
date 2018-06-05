@@ -65,6 +65,7 @@ public class Warrior extends Thread {
                 try {
                     this.wait();
                 } catch (InterruptedException ignored) {
+                    break;
                 }
             }
         }

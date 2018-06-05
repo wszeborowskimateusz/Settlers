@@ -3,6 +3,8 @@ package settlersi.PT.lab.Main;
 import settlersi.PT.lab.Main.characters.KingdomType;
 import settlersi.PT.lab.Main.characters.Warrior;
 
+import java.util.Iterator;
+
 class Kingdom {
     private static final int AMOUNT_OF_WARRIORS = 50;
     private KingdomType kingdomType;
@@ -34,6 +36,14 @@ class Kingdom {
         } else {
             for (int i = 0; i < AMOUNT_OF_WARRIORS; i++)
                 Settlers.redKingdomWarriors.add(new Warrior(kingdomType));
+        }
+    }
+
+    void removeAllWarriors(){
+        if (kingdomType == KingdomType.BLUE) {
+            Settlers.blueKingdomWarriors.clear();
+        } else {
+            Settlers.redKingdomWarriors.clear();
         }
     }
 }

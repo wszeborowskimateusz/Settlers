@@ -19,7 +19,7 @@ public class King extends Thread {
                 try {
                     this.wait();
                 } catch (InterruptedException e) {
-                    System.out.print("King has been interrupted\n");
+                    break;
                 }
                 this.skillLevel++;
                 controller.addEvent("The King has just leveled up!\n", this.kingdomType);

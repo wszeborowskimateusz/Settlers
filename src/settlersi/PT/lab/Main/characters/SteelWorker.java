@@ -34,6 +34,7 @@ public class SteelWorker extends Thread {
                 try {
                     this.wait();
                 } catch (InterruptedException ignored) {
+                    break;
                 }
             }
 

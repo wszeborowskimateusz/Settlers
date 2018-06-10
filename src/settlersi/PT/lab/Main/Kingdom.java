@@ -3,7 +3,6 @@ package settlersi.PT.lab.Main;
 import settlersi.PT.lab.Main.characters.KingdomType;
 import settlersi.PT.lab.Main.characters.Warrior;
 
-import java.util.Iterator;
 
 class Kingdom {
     private static final int AMOUNT_OF_WARRIORS = 50;

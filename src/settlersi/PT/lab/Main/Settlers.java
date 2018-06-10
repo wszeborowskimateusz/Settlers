@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import settlersi.PT.lab.Main.characters.*;
+import  settlersi.PT.lab.Main.characters.Character;
+
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -23,20 +25,40 @@ public class Settlers extends Application {
     public  static ArrayList<Warrior> redKingdomWarriors = new ArrayList<>();
     public  static King blueKingdomKing = new King(KingdomType.BLUE);
     public  static King redKingdomKing = new King(KingdomType.RED);
-     static Princess blueKingdomPrincess = new Princess(blueKingdomKing, KingdomType.BLUE);
-     static Princess redKingdomPrincess = new Princess(redKingdomKing, KingdomType.RED);
-     static Jeweller blueKingdomJeweller = new Jeweller(blueKingdomPrincess, KingdomType.BLUE, 3000);
-     static Jeweller redKingdomJeweller = new Jeweller(redKingdomPrincess, KingdomType.RED, 3000);
-     static Armourer blueKingdomArmourer = new Armourer(blueKingdomWarriors, KingdomType.BLUE, 300);
-     static Armourer redKingdomArmourer = new Armourer(redKingdomWarriors, KingdomType.RED, 300);
-     static SteelWorker blueKingdomSteelWorker = new SteelWorker(blueKingdomJeweller, blueKingdomArmourer, KingdomType.BLUE, 1000);
-     static SteelWorker redKingdomSteelWorker = new SteelWorker(redKingdomJeweller, redKingdomArmourer, KingdomType.RED, 1000);
-     static Miner blueKingdomMiner = new Miner(blueKingdomSteelWorker, 1000, KingdomType.BLUE);
-     static Miner redKingdomMiner = new Miner(redKingdomSteelWorker, 500, KingdomType.RED);
-     static Farmer blueKingdomFarmer = new Farmer(blueKingdomMiner, 300);
-     static Farmer redKingdomFarmer = new Farmer(redKingdomMiner, 300);
-     static WarriorsAngel blueKingdomWarriorsAngel = new WarriorsAngel(blueKingdomWarriors, 90, KingdomType.BLUE);
-     static WarriorsAngel redKingdomWarriorsAngel = new WarriorsAngel(redKingdomWarriors, 100, KingdomType.RED);
+    static Princess blueKingdomPrincess = new Princess(blueKingdomKing, KingdomType.BLUE);
+    static Princess redKingdomPrincess = new Princess(redKingdomKing, KingdomType.RED);
+    static Jeweller blueKingdomJeweller = new Jeweller(blueKingdomPrincess, KingdomType.BLUE, 3000);
+    static Jeweller redKingdomJeweller = new Jeweller(redKingdomPrincess, KingdomType.RED, 3000);
+    static Armourer blueKingdomArmourer = new Armourer(blueKingdomWarriors, KingdomType.BLUE, 300);
+    static Armourer redKingdomArmourer = new Armourer(redKingdomWarriors, KingdomType.RED, 300);
+    static SteelWorker blueKingdomSteelWorker = new SteelWorker(blueKingdomJeweller, blueKingdomArmourer, KingdomType.BLUE, 1000);
+    static SteelWorker redKingdomSteelWorker = new SteelWorker(redKingdomJeweller, redKingdomArmourer, KingdomType.RED, 1000);
+    static Miner blueKingdomMiner = new Miner(blueKingdomSteelWorker, 1000, KingdomType.BLUE);
+    static Miner redKingdomMiner = new Miner(redKingdomSteelWorker, 500, KingdomType.RED);
+
+    static ArrayList<Character> blueKingdomCharacters = new ArrayList<>();
+    static ArrayList<Character> redKingdomCharacters = new ArrayList<>();
+    static{
+        blueKingdomCharacters.add(blueKingdomKing);
+        blueKingdomCharacters.add(blueKingdomPrincess);
+        blueKingdomCharacters.add(blueKingdomArmourer);
+        blueKingdomCharacters.add(blueKingdomJeweller);
+        blueKingdomCharacters.add(blueKingdomMiner);
+        blueKingdomCharacters.add(blueKingdomSteelWorker);
+
+        redKingdomCharacters.add(redKingdomKing);
+        redKingdomCharacters.add(redKingdomPrincess);
+        redKingdomCharacters.add(redKingdomArmourer);
+        redKingdomCharacters.add(redKingdomJeweller);
+        redKingdomCharacters.add(redKingdomMiner);
+        redKingdomCharacters.add(redKingdomSteelWorker);
+    }
+
+    static Farmer blueKingdomFarmer = new Farmer(blueKingdomCharacters, 300);
+    static Farmer redKingdomFarmer = new Farmer(redKingdomCharacters, 300);
+    static WarriorsAngel blueKingdomWarriorsAngel = new WarriorsAngel(blueKingdomWarriors, 100, KingdomType.BLUE);
+    static WarriorsAngel redKingdomWarriorsAngel = new WarriorsAngel(redKingdomWarriors, 100, KingdomType.RED);
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {

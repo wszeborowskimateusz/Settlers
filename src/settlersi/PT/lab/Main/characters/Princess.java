@@ -3,7 +3,7 @@ package settlersi.PT.lab.Main.characters;
 import settlersi.PT.lab.Main.Controller;
 import settlersi.PT.lab.Main.Settlers;
 
-public class Princess extends Thread {
+public class Princess extends Character {
     private KingdomType kingdomType;
     private final King king;
     private int amountOfJewelery;
@@ -23,10 +23,13 @@ public class Princess extends Thread {
                     break;
                 }
             }
-            controller.addEvent("Princess has just received a fine piece of jewelery!\n", this.kingdomType);
-            synchronized (this.king) {
-                amountOfJewelery++;
-                this.king.notify();
+            if(getAmmountOfFood() > 0) {
+                consumeFood();
+                controller.addEvent("Princess has just received a fine piece of jewelery!\n", this.kingdomType);
+                synchronized (this.king) {
+                    amountOfJewelery++;
+                    this.king.notify();
+                }
             }
         }
     }

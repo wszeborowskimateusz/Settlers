@@ -3,7 +3,7 @@ package settlersi.PT.lab.Main.characters;
 import settlersi.PT.lab.Main.Controller;
 import settlersi.PT.lab.Main.Settlers;
 
-public class King extends Thread {
+public class King extends Character {
     private KingdomType kingdomType;
     private int skillLevel;
 
@@ -21,8 +21,10 @@ public class King extends Thread {
                 } catch (InterruptedException e) {
                     break;
                 }
-                this.skillLevel++;
-                controller.addEvent("The King has just leveled up!\n", this.kingdomType);
+                if(getAmmountOfFood() > 0) {
+                    this.skillLevel++;
+                    controller.addEvent("The King has just leveled up!\n", this.kingdomType);
+                }
             }
         }
     }

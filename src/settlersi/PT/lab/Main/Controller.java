@@ -15,6 +15,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import settlersi.PT.lab.Main.characters.*;
+import settlersi.PT.lab.Main.characters.Character;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -208,8 +209,26 @@ public class Controller implements Initializable {
         Settlers.redKingdomSteelWorker = new SteelWorker(Settlers.redKingdomJeweller, Settlers.redKingdomArmourer, KingdomType.RED, 1000);
         Settlers.blueKingdomMiner = new Miner(Settlers.blueKingdomSteelWorker, 1000, KingdomType.BLUE);
         Settlers.redKingdomMiner = new Miner(Settlers.redKingdomSteelWorker, 500, KingdomType.RED);
-        Settlers.blueKingdomFarmer = new Farmer(Settlers.blueKingdomMiner, 300);
-        Settlers.redKingdomFarmer = new Farmer(Settlers.redKingdomMiner, 300);
+
+        Settlers.blueKingdomCharacters = new ArrayList<>();
+        Settlers.blueKingdomCharacters.add(Settlers.blueKingdomKing);
+        Settlers.blueKingdomCharacters.add(Settlers.blueKingdomPrincess);
+        Settlers.blueKingdomCharacters.add(Settlers.blueKingdomArmourer);
+        Settlers.blueKingdomCharacters.add(Settlers.blueKingdomJeweller);
+        Settlers.blueKingdomCharacters.add(Settlers.blueKingdomMiner);
+        Settlers.blueKingdomCharacters.add(Settlers.blueKingdomSteelWorker);
+
+        Settlers.redKingdomCharacters = new ArrayList<>();
+        Settlers.redKingdomCharacters.add(Settlers.redKingdomKing);
+        Settlers.redKingdomCharacters.add(Settlers.redKingdomPrincess);
+        Settlers.redKingdomCharacters.add(Settlers.redKingdomArmourer);
+        Settlers.redKingdomCharacters.add(Settlers.redKingdomJeweller);
+        Settlers.redKingdomCharacters.add(Settlers.redKingdomMiner);
+        Settlers.redKingdomCharacters.add(Settlers.redKingdomSteelWorker);
+
+        Settlers.blueKingdomFarmer = new Farmer(Settlers.blueKingdomCharacters, 300);
+        Settlers.redKingdomFarmer = new Farmer(Settlers.redKingdomCharacters, 300);
+
         Settlers.blueKingdomWarriorsAngel = new WarriorsAngel(Settlers.blueKingdomWarriors, 90, KingdomType.BLUE);
         Settlers.redKingdomWarriorsAngel = new WarriorsAngel(Settlers.redKingdomWarriors, 100, KingdomType.RED);
     }

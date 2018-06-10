@@ -2,9 +2,11 @@ package settlersi.PT.lab.Main.characters;
 
 import settlersi.PT.lab.Main.Settlers;
 
+import java.util.ArrayList;
+
 public class Farmer extends Thread {
-    private Miner miner;
     private int harvestingTime;
+    private ArrayList<Character> characters;
 
     @Override
     public void run() {
@@ -15,16 +17,16 @@ public class Farmer extends Thread {
                 break;
             }
 
-
-
-            synchronized (this.miner) {
-                this.miner.notify();
+            if(characters.size() > 0) {
+                Character character = characters.get(Settlers.rand.nextInt(characters.size()));
+                int amount = Settlers.rand.nextInt(10) + 5;
+                character.receiveFood(amount);
             }
         }
     }
 
-    public Farmer(Miner miner, int harvestingTime) {
+    public Farmer(ArrayList<Character> characters, int harvestingTime) {
         this.harvestingTime = harvestingTime;
-        this.miner = miner;
+        this.characters = characters;
     }
 }

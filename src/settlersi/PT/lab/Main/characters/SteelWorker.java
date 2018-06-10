@@ -3,7 +3,7 @@ package settlersi.PT.lab.Main.characters;
 import settlersi.PT.lab.Main.Controller;
 import settlersi.PT.lab.Main.Settlers;
 
-public class SteelWorker extends Thread {
+public class SteelWorker extends Character {
 
     private KingdomType kingdomType;
     private int productionTime;
@@ -37,49 +37,51 @@ public class SteelWorker extends Thread {
                     break;
                 }
             }
+            if(getAmmountOfFood() > 0) {
+                consumeFood();
+                if (isGold) {
+                    try {
+                        controller.addEvent("Steel worker has just received gold from Miner!\n" +
+                                "Steel worker started gold production!\n", this.kingdomType);
+                        this.isGold = false;
+                        Thread.sleep(Settlers.rand.nextInt(productionTime * 2) + (productionTime * 2));
+                    } catch (InterruptedException ignored) {
+                    }
 
-            if (isGold) {
+                    synchronized (this.jeweller) {
+                        this.jeweller.notify();
+                    }
+                    continue;
+                }
+
+                if (!isCoal && isOre) {
+                    controller.addEvent("Steel worker has just received ore from Miner!\n", this.kingdomType);
+                    previousDelivery = 0;
+                } else if (isCoal && !isOre) {
+                    controller.addEvent("Steel worker has just received coal from Miner!\n", this.kingdomType);
+                    previousDelivery = 1;
+                } else {
+                    if (previousDelivery == 0)
+                        controller.addEvent("Steel worker has just received coal from Miner!\n", this.kingdomType);
+                    else
+                        controller.addEvent("Steel worker has just received ore from Miner!\n", this.kingdomType);
+                    previousDelivery = -1;
+                }
+
+                if (!isCoal || !isOre) {
+                    continue;
+                }
+
                 try {
-                    controller.addEvent("Steel worker has just received gold from Miner!\n" +
-                            "Steel worker started gold production!\n", this.kingdomType);
-                    this.isGold = false;
-                    Thread.sleep(Settlers.rand.nextInt(productionTime * 2) + (productionTime * 2));
+                    controller.addEvent("Steel worker started steel production!\n", this.kingdomType);
+                    this.isOre = false;
+                    this.isCoal = false;
+                    Thread.sleep(Settlers.rand.nextInt(productionTime) + productionTime);
                 } catch (InterruptedException ignored) {
                 }
-
-                synchronized (this.jeweller) {
-                    this.jeweller.notify();
+                synchronized (this.armourer) {
+                    this.armourer.notify();
                 }
-                continue;
-            }
-
-            if (!isCoal && isOre) {
-                controller.addEvent("Steel worker has just received ore from Miner!\n", this.kingdomType);
-                previousDelivery = 0;
-            } else if (isCoal && !isOre) {
-                controller.addEvent("Steel worker has just received coal from Miner!\n", this.kingdomType);
-                previousDelivery = 1;
-            } else {
-                if (previousDelivery == 0)
-                    controller.addEvent("Steel worker has just received coal from Miner!\n", this.kingdomType);
-                else
-                    controller.addEvent("Steel worker has just received ore from Miner!\n", this.kingdomType);
-                previousDelivery = -1;
-            }
-
-            if (!isCoal || !isOre) {
-                continue;
-            }
-
-            try {
-                controller.addEvent("Steel worker started steel production!\n", this.kingdomType);
-                this.isOre = false;
-                this.isCoal = false;
-                Thread.sleep(Settlers.rand.nextInt(productionTime) + productionTime);
-            } catch (InterruptedException ignored) {
-            }
-            synchronized (this.armourer) {
-                this.armourer.notify();
             }
 
         }

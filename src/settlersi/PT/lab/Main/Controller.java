@@ -140,10 +140,14 @@ public class Controller implements Initializable {
     }
 
     public synchronized void endSimulation(KingdomType kingdomType){
-        if(kingdomType == KingdomType.RED)
+        if(kingdomType == KingdomType.RED){
             redKingdomWins.setVisible(true);
-        else
+            Settlers.blueKingdomWarriorsAngel.interrupt();
+        }
+        else{
             blueKingdomWins.setVisible(true);
+            Settlers.redKingdomWarriorsAngel.interrupt();
+        }
 
         mediaPlayer.stop();
         stopAllThreads();

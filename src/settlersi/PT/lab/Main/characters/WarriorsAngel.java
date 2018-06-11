@@ -17,6 +17,7 @@ public class WarriorsAngel extends Thread {
             try {
                 Thread.sleep(Settlers.rand.nextInt(channelingPowerTime) + channelingPowerTime);
             } catch (InterruptedException ignored) {
+                break;
             }
 
 
